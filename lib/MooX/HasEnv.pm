@@ -1,4 +1,5 @@
 package MooX::HasEnv;
+# ABSTRACT: Making attributes based on ENV variables
 
 use strict;
 use warnings;
