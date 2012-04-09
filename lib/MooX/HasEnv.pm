@@ -32,3 +32,37 @@ sub import {
 }
 
 1;
+
+=encoding utf8
+
+=head1 SYNOPSIS
+
+  package MyApp::Config;
+
+  use MooX::HasEnv; # also adds use Moo;
+
+  has_env var => MYAPP_VARIABLE => '0';
+  has_env var_name => 'MYAPP_VARIABLE_NAME'; # no default
+  has_env foo => undef, '2';
+
+  use Path::Class;
+
+  has_env root => MYAPP_ROOT => file(__FILE__)->parent->parent->parent->absolute."";
+
+=head1 DESCRIPTION
+
+=head1 SUPPORT
+
+IRC
+
+  Join #web-simple on irc.perl.org. Highlight Getty for fast reaction :).
+
+Repository
+
+  http://github.com/Getty/p5-moox-hasenv
+  Pull request and additional contributors are welcome
+ 
+Issue Tracker
+
+  http://github.com/Getty/p5-moox-hasenv/issues
+
