@@ -20,12 +20,19 @@ sub import {
 		my ( $name, $env_var, $default ) = @_;
 		my $builder = '_build_'.$name;
 		$stash->add_symbol('&'.$builder, sub {
+			my ( $self ) = @_;
 			my $env_value = defined $env_var && defined $ENV{$env_var} ? $ENV{$env_var} : undef;
-			return defined $env_value ? $env_value : defined $default ? ref $default eq 'CODE' ? $default->($_[0]) : $default : undef;
+			return defined $env_value ?
+				$env_value :
+				defined $default ?
+					ref $default eq 'CODE' ?
+						$default->($self) :
+					$default :
+				undef;
 		});
 		$stash->get_symbol("&has")->($name,
 			is => 'ro',
-			lazy_build => 1,
+			lazy => 1,
 			builder => $builder,
 		);
 	});
