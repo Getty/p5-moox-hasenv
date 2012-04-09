@@ -30,7 +30,7 @@ sub import {
 					$default :
 				undef;
 		});
-		$stash->get_symbol("&has")->($name,
+		$caller->can("has")->($name,
 			is => 'ro',
 			lazy => 1,
 			builder => $builder,
